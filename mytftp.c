@@ -296,6 +296,7 @@ void recv_data(int sockfd, char *filename) {
 		/* Receive the DATA */
 		if (is_debugging) printf("Waiting for DATA...\n");
 		alarm(TIMEOUT_SECS); // start new timer
+		memset(dataPacket, 0, sizeof(TFTP_Data));
 		n = recvfrom(sockfd, dataPacket, sizeof(TFTP_Data), 0, (struct sockaddr *)&client_addr, &clilen);
 		timeout = 0;
 		alarm(0); // void timer
